@@ -1,7 +1,9 @@
+import { AiFillCloseCircle } from 'react-icons/ai'
 import styled from "styled-components";
 
 const StyledColaborador = styled.div`
     width: 280px;
+    position: relative;
     div {
         background-color: #f0f0f0;
     }
@@ -36,8 +38,16 @@ const Rodape = styled.div`
     }
 `
 
-const Colaborador = ({ nome, imagem, role, corDeFundo }) => {
+const Delete = styled(AiFillCloseCircle)`
+    position: absolute;
+    right: -10px;
+    top: -10px;
+`
+
+const Colaborador = ({ nome, imagem, role, corDeFundo, aoDeletar }) => {
     return (<StyledColaborador>
+        <Delete size={20} color={'#fff'} onClick={aoDeletar}>
+        </Delete>
         <div style={{ backgroundColor: corDeFundo }}>
             <img src={imagem} alt={nome}/>
         </div>

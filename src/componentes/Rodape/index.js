@@ -1,3 +1,7 @@
+import { 
+    AiFillLinkedin,
+    AiFillGithub
+} from "react-icons/ai";
 import styled from "styled-components";
 
 const StyledRodape = styled.footer`
@@ -11,13 +15,10 @@ const StyledRodape = styled.footer`
         display: inline-block;
         margin-right: 32px;
     }
-
     ul li:last-child {
         margin-right: 0px;
     }
 `
-
-
 
 
 const Rodape = () => {
@@ -27,12 +28,12 @@ const Rodape = () => {
             <ul>
                 <li>
                     <a href="https://www.linkedin.com/in/giancarlo-habeck-82a17a210/">
-                        <img src="imagens/linkedin.png" alt="linkedin"/>
+                        <AiFillLinkedin size={35} color={'#fff'}/>
                     </a>
                 </li>
                 <li>
                     <a href="https://github.com/GiancarloHa">
-                        <img src="imagens/GitHub-Icon-White.png" alt="github"/>
+                        <AiFillGithub size={35} color={'#fff'}/>
                     </a>
                 </li>
             </ul>

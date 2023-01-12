@@ -25,7 +25,10 @@ const Time = (props) => {
         (props.colaboradores.length > 0) && <StyledTime style={css}>
             <h3 style={{ borderColor: props.corPrimaria }}>{props.nome}</h3>
             <StyledColaborador>
-                {props.colaboradores.map( colaborador => <Colaborador corDeFundo={props.corPrimaria} key={colaborador.nome} nome={colaborador.nome} role={colaborador.role} imagem={colaborador.imagem}/> )}
+                {props.colaboradores.map( colaborador => {
+                    
+                    return <Colaborador corDeFundo={props.corPrimaria} key={colaborador.nome} nome={colaborador.nome} role={colaborador.role} imagem={colaborador.imagem} aoDeletar={props.aoDeletar}/> 
+                })}
             </StyledColaborador>
         </StyledTime>
     )
