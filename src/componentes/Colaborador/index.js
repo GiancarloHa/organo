@@ -4,9 +4,6 @@ import styled from "styled-components";
 const StyledColaborador = styled.div`
     width: 280px;
     position: relative;
-    div {
-        background-color: #f0f0f0;
-    }
     img {
         width: 100px;
         height: 80px;
@@ -15,26 +12,28 @@ const StyledColaborador = styled.div`
         bottom: -50px;
     }
 `
+const StyleCabecalho = styled.div`
+    border-radius: 10px 10px 0px 0px;
+`
 
 
 const Rodape = styled.div`
     background-color: #fff;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.08);
+    border-radius: 0px 0px 10px 10px;
     padding-top: 90px;
-    padding-bottom: 40px;
+    padding-bottom: 5px;
+    background-color: #F0F0F0;
     a{
         color: #6278f7;
         font-size: 18px;
-        line-height: 22px;
         font-weight: bold;
-        margin-bottom: 8px;
         text-decoration: none;
     }
     h5{
         font-size: 18px;
-        line-height: 22px;
+        line-height: 18px;
         color: #212121;
-        padding: 0 16px;
     }
 `
 
@@ -45,12 +44,13 @@ const Delete = styled(AiFillCloseCircle)`
 `
 
 const Colaborador = ({ nome, imagem, role, corDeFundo, aoDeletar }) => {
-    return (<StyledColaborador>
+    return (
+    <StyledColaborador>
         <Delete size={20} color={'#fff'} onClick={aoDeletar}>
         </Delete>
-        <div style={{ backgroundColor: corDeFundo }}>
+        <StyleCabecalho style={{ backgroundColor: corDeFundo }}>
             <img src={imagem} alt={nome}/>
-        </div>
+        </StyleCabecalho>
         <Rodape>
             <a href={"https://lol.fandom.com/wiki/"+nome}>{nome}</a>
             <h5>{role}</h5>

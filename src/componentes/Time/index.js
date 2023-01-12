@@ -3,19 +3,18 @@ import Colaborador from "../Colaborador";
 
 const StyledTime = styled.section`
     text-align: center;
-    padding: 32px;
+    padding: 20px;
     h3 {
         font-size: 32px;
         border-bottom: 4px solid;
         display: inline-block;
-        padding-bottom: 8px;
     }
 `
 
 const StyledColaborador = styled.div`
         display: flex;
         justify-content: space-around;
-        margin-top: 32px;
+        margin-top: 10px;
         flex-wrap: wrap;
 `
 

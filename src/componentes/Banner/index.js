@@ -4,7 +4,7 @@ const StyledBanner = styled.header`
     background-color: #000;
     text-align: center;
     img {
-        max-width: auto;
+        height: 350px;
     }
 `
 

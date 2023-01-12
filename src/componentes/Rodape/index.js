@@ -5,6 +5,7 @@ import {
 import styled from "styled-components";
 
 const StyledRodape = styled.footer`
+    height: 40px;
     background: #000;
     color: #FFF;
     padding: 40px;
