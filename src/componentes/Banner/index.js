@@ -5,6 +5,7 @@ const StyledBanner = styled.header`
     text-align: center;
     img {
         height: 350px;
+        max-width: 100%;
     }
 `
 
