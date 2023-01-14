@@ -4,6 +4,7 @@ import Formulario from './componentes/Formulario';
 import Time from './componentes/Time';
 import Rodape from './componentes/Rodape';
 import styled from 'styled-components';
+import {v4 as uuidv4} from 'uuid';
 
 
 const StyledApp = styled.div`
@@ -12,61 +13,61 @@ background-color: #fff;
 
 function App() {
 
-  const times = [
+  const [times, setTimes] =  useState ([
     {
+      id: uuidv4(),
       nome: 'Fluxo',
-      corPrimaria: '#000',
-      corSecundaria: '#5f02e7'
+      cor: '#5f02e7'
       
     },
     {
+      id: uuidv4(),
       nome: 'FURIA',
-      corPrimaria: '#000',
-      corSecundaria: '#808080'
+      cor: '#808080'
     },
     {
+      id: uuidv4(),
       nome: 'INTZ',
-      corPrimaria: '#000',
-      corSecundaria: '#c0c0c0'
+      cor: '#c0c0c0'
     },
     {
+      id: uuidv4(),
       nome: 'KaBuM',
-      corPrimaria: '#000',
-      corSecundaria: '#fc6904'
+      cor: '#fc6904'
     },
     {
+      id: uuidv4(),
       nome: 'Liberty',
-      corPrimaria: '#000',
-      corSecundaria: '#00e8e8' 
+      cor: '#00e8e8' 
     },
     {
+      id: uuidv4(),
       nome: 'Los Grandes',
-      corPrimaria: '#000',
-      corSecundaria: '#ff6600'
+      cor: '#ff6600'
     },
     {
+      id: uuidv4(),
       nome: 'LOUD',
-      corPrimaria: '#000',
-      corSecundaria: '#40ff40'
+      cor: '#40ff40'
     },
     {
+      id: uuidv4(),
       nome: 'Pain Gaming',
-      corPrimaria: '#000',
-      corSecundaria: '#ea2e46'
+      cor: '#ea2e46'
     },
     {
+      id: uuidv4(),
       nome: 'RED Canids Kalunga',
-      corPrimaria: '#000',
-      corSecundaria: '#ef384d'
+      cor: '#ef384d'
     },
     {
+      id: uuidv4(),
       nome: 'Vivo Keyd Stars',
-      corPrimaria: '#000',
-      corSecundaria: '#5c2a82'
+      cor: '#5c2a82'
       
     }
-  ]
-  
+  ])
+
   const roles = [
     {
       nome: 'Topo'
@@ -86,27 +87,56 @@ function App() {
 
   ]
 
-  const [colaboradores, setColaboradores] = useState([])
+  const inicial = [
+    {
+      id: uuidv4(),
+      nome: 'Tay',
+      role: roles[0].nome,
+      imagem: 'https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/d/d8/FLA_Tay_2022_Split_2.png',
+      time: times[0].nome
+    }
+  ]
+
+  const [colaboradores, setColaboradores] = useState(inicial)
 
   const aoNovoColaboradorAdicionado = (colaborador) => {
     setColaboradores([...colaboradores, colaborador])
   }
 
-  function deletarColaborador() {
-
+  function deletarColaborador(nome) {
+    setColaboradores(colaboradores.filter(colaborador => colaborador.nome !== nome));
   }
   
+  function mudarCorDoTime(cor, id) {
+    setTimes(times.map(time =>{
+      if(time.id === id) {
+        time.cor = cor;
+      }
+      return time;
+    }));
+  }
+
+  function cadastrarTime(novoTime) {
+    setTimes([ ...times, { ...novoTime, id: uuidv4() } ])
+  }
+
   return (
     
     <StyledApp className="App">
       <Banner />
-      <Formulario times={times.map(time => time.nome)} roles={roles.map(role => role.nome)} aoColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)}/>
+      <Formulario 
+        cadastrarTime={cadastrarTime}
+        times={times.map(time => time.nome)} 
+        roles={roles.map(role => role.nome)} 
+        aoColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)}
+      />
       
-      {times.map(time => <Time 
+      {times.map(time => 
+      <Time 
+        mudarCorDoTime={mudarCorDoTime}
         key={time.nome} 
         nome={time.nome} 
-        corPrimaria={time.corPrimaria} 
-        corSecundaria={time.corSecundaria}
+        cor={time.cor}
         colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)}
         aoDeletar={deletarColaborador}
       />)}

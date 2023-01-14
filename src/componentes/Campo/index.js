@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const StyledCampoTexto = styled.div`
+const StyledCampo= styled.div`
     margin: 24px 0;
     label {
         display: block;
@@ -16,20 +16,28 @@ const StyledCampoTexto = styled.div`
         padding: 24px;
         box-sizing: border-box;
     }
+
 `
 
-const CampoTexto = (props) => {
+
+const Campo = (props) => {
     
     const aoDigitado = (evento) => {
         props.aoAlterado(evento.target.value)
     }
 
     return (
-        <StyledCampoTexto>
+        <StyledCampo>
             <label>{props.label}</label>
-            <input value={props.valor} onChange={aoDigitado} required={props.obrigatorio} placeholder={props.placeholder}/>
-        </StyledCampoTexto>
+            <input 
+                type={props.type} 
+                value={props.valor} 
+                onChange={aoDigitado} 
+                required={props.obrigatorio} 
+                placeholder={props.placeholder}
+            />
+        </StyledCampo>
     )
 }
 
-export default CampoTexto
+export default Campo

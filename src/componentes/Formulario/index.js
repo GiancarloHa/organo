@@ -1,15 +1,17 @@
 import { useState } from "react"
 import Botao from "../Botao"
-import CampoTexto from "../CampoTexto/CampoTexto"
+import Campo from "../Campo"
 import ListaSuspensa from "../ListaSuspensa"
 import styled from 'styled-components'
 
 const StyledFormulario = styled.section`
     display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
     justify-content: center;
-    margin: 80px 0;
+    margin: 80px 50px;
     form {
-        max-width: 80%;
+        flex: 1;
         background-color: #f2f2f2;
         border-radius: 20px;
         padding: 36px 64px;
@@ -22,6 +24,8 @@ const Formulario = (props) => {
     const [role, setRole] = useState('')
     const [imagem, setImagem] = useState('')
     const [time, setTime] = useState('')
+    const [nomeTime, setnomeTime] = useState('')
+    const [corTime, setcorTime] = useState('')
 
     const aoSalvar = (evento) => {
         evento.preventDefault()
@@ -41,7 +45,7 @@ const Formulario = (props) => {
         <StyledFormulario>
             <form onSubmit={aoSalvar}>
                 <h2>Preencha os dados para criar o card do jogador</h2>
-                <CampoTexto 
+                <Campo 
                     obrigatorio={true} 
                     label="Nome" 
                     placeholder="Digite o nome do jogador" 
@@ -57,7 +61,7 @@ const Formulario = (props) => {
                     aoAlterado={valor => setRole(valor)}
                 />
 
-                <CampoTexto 
+                <Campo 
                     label="Imagem" 
                     placeholder="Digite o endereco da imagem" 
                     valor={imagem}
@@ -73,6 +77,33 @@ const Formulario = (props) => {
                 />
 
                 <Botao>Criar Card</Botao> 
+            </form>
+            <form onSubmit={(evento) => {
+                evento.preventDefault()
+                props.cadastrarTime({ 
+                    nome: nomeTime, 
+                    cor: corTime
+                })
+            }}>
+                <h2>Preencha os dados para criar um novo time.</h2>
+                <Campo 
+                    obrigatorio
+                    label="Nome" 
+                    placeholder="Digite o nome do time" 
+                    valor={nomeTime}
+                    aoAlterado={valor => setnomeTime(valor)}
+                />
+
+                <Campo 
+                    obrigatorio
+                    type='color'
+                    label="Cor"
+                    placeholder="Digite a cor do time" 
+                    valor={corTime}
+                    aoAlterado={valor => setcorTime(valor)}
+                />
+
+                <Botao>Criar um novo time</Botao> 
             </form>
         </StyledFormulario>
     )

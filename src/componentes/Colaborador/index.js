@@ -46,7 +46,11 @@ const Delete = styled(AiFillCloseCircle)`
 const Colaborador = ({ nome, imagem, role, corDeFundo, aoDeletar }) => {
     return (
     <StyledColaborador>
-        <Delete size={20} color={'#fff'} onClick={aoDeletar}>
+        <Delete 
+            size={20} 
+            color={'#fff'} 
+            onClick={() => aoDeletar(nome)}
+        >
         </Delete>
         <StyleCabecalho style={{ backgroundColor: corDeFundo }}>
             <img src={imagem} alt={nome}/>
